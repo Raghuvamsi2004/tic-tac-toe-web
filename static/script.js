@@ -72,3 +72,4 @@ socket.on('game_over', (data) => {
     alert(`${data.winner} wins!`);
   }
 });
+
