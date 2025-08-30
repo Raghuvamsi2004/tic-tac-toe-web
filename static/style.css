@@ -1,0 +1,9 @@
+body { font-family: Arial; background: #fff0f6; text-align:center; padding:20px; }
+.header h1 { margin: 0; color: #c62875; }
+.game { display:inline-block; margin-top:20px; }
+#board { display:grid; grid-template-columns: repeat(3, 100px); grid-gap:8px; }
+.cell { width:100px; height:100px; display:flex; align-items:center; justify-content:center;
+       font-size:40px; background:white; border-radius:10px; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+       cursor:pointer; }
+.cell.disabled { cursor:not-allowed; opacity:0.7; }
+#turn { margin-top:12px; font-weight:bold; }

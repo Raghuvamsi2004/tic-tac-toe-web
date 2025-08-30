@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tic Tac Toe — Room</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Tic Tac Toe ❤️</h1>
+    <p id="status">Connecting...</p>
+    <p>Share this link: <input id="share" readonly style="width:300px"/></p>
+  </div>
+
+  <div id="game" class="game">
+    <div id="board"></div>
+    <p id="turn"></p>
+    <p id="players"></p>
+    <button onclick="leave()">Leave</button>
+  </div>
+
+  <script>
+    const ROOM = "{{ room_id }}";
+  </script>
+  <script src="/static/script.js"></script>
+</body>
+</html>
