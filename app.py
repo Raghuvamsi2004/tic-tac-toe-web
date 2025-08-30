@@ -117,4 +117,5 @@ if __name__ == "__main__":
     host = "0.0.0.0" if os.environ.get("RENDER") else "127.0.0.1"
     socketio.run(app, debug=True, host=host, port=5000)
 
+print("🚀 Running NEW version of app.py")
 
