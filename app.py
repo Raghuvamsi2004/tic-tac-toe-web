@@ -77,7 +77,7 @@ def handle_join(data):
     })
     
     # Update all players in the room about player list
-    socketio.emit('player_update', {'players': players}, room=room_id)
+    socketio.emit('player_update', {'players': players}, to=room_id)
 
 @socketio.on('make_move')
 def handle_move(data):
@@ -119,17 +119,17 @@ def handle_move(data):
         
     print(f"Move applied: {symbol} at {idx}, winner: {winner}, next turn: {room['turn']}")  # Debug
 
-    # Broadcast move to room
+    # Broadcast move to ALL players in the room (including the one who made the move)
     socketio.emit('move_made', {
         'index': idx, 
         'symbol': symbol, 
         'board': room['board'], 
         'turn': room['turn']
-    }, room=room_id)
+    }, to=room_id)
 
     if winner:
         print(f"Game over, winner: {winner}")  # Debug
-        socketio.emit('game_over', {'winner': winner, 'board': room['board']}, room=room_id)
+        socketio.emit('game_over', {'winner': winner, 'board': room['board']}, to=room_id)
         # Reset room after game
         room['board'] = ['']*9
         room['turn'] = '❤️'
@@ -146,7 +146,7 @@ def handle_leave(data):
         leave_room(room_id)
         socketio.emit('player_update', {
             'players': list(rooms[room_id]['players'].values())
-        }, room=room_id)
+        }, to=room_id)
         
         # If no players, clean up
         if not rooms[room_id]['players']:
@@ -166,7 +166,7 @@ def handle_disconnect():
             del room_data['players'][request.sid]
             socketio.emit('player_update', {
                 'players': list(room_data['players'].values())
-            }, room=room_id)
+            }, to=room_id)
             if not room_data['players']:
                 del rooms[room_id]
 

@@ -26,7 +26,7 @@ function renderBoard() {
     const turnEl = document.getElementById('turn');
     if (myTurn) {
         turnEl.style.color = 'green';
-        turnEl.innerHTML = `Turn: ${board.find(c => c) ? 'Current turn' : 'Waiting...'} (YOUR TURN!)`;
+        turnEl.innerHTML = `Turn: ${document.querySelector('#turn').textContent.split(':')[1]} (YOUR TURN!)`;
     } else {
         turnEl.style.color = 'red';
     }
@@ -87,10 +87,13 @@ socket.on('player_update', (data) => {
 
 socket.on('move_made', (data) => {
     console.log('Move made:', data); // Debug
-    board = data.board;
+    board = data.board;  // Update the local board state
     document.getElementById('turn').innerText = 'Turn: ' + data.turn;
     myTurn = (data.turn === mySymbol);
-    renderBoard();
+    
+    console.log(`Updated: myTurn=${myTurn}, mySymbol=${mySymbol}, currentTurn=${data.turn}`); // Debug
+    
+    renderBoard();  // Re-render the board with new state
 });
 
 socket.on('invalid_move', (data) => {
