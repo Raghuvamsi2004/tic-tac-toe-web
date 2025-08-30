@@ -111,7 +111,10 @@ def handle_leave(data):
         if not rooms[room_id]['players']:
             del rooms[room_id]
 
+import os
+
 if __name__ == "__main__":
-    # local development with eventlet
-    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
+    host = "0.0.0.0" if os.environ.get("RENDER") else "127.0.0.1"
+    socketio.run(app, debug=True, host=host, port=5000)
+
 
