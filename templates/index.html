@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>❤️ Tic Tac Toe</title>
+    <style>
+        body { text-align: center; font-family: Arial; background: pink; }
+        h1 { color: red; }
+        table { margin: auto; border-collapse: collapse; }
+        td { width: 80px; height: 80px; font-size: 40px; text-align: center; border: 2px solid black; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe ❤️</h1>
+    <table>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+    </table>
+
+    <script>
+        let turn = "❤️";  // hearts go first
+        function makeMove(cell) {
+            if (cell.innerHTML === "") {
+                cell.innerHTML = turn;
+                turn = (turn === "❤️") ? "⭐" : "❤️";
+            }
+        }
+    </script>
+</body>
+</html>
