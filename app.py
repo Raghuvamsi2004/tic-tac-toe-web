@@ -4,7 +4,7 @@ import uuid
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a3f58b9c6f4d2b1e9c1f64dfe1234567'
-socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Keep simple server-side room state (not persistent). Each room holds:
 # { 'players': { sid: symbol }, 'board': ['']*9, 'turn': '❤️' }
